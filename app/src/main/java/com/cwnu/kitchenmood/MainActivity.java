@@ -59,6 +59,10 @@ public final class MainActivity extends Activity {
     private int noteIndex;
     private float volume = 0.2f;
     private long lastDisplayedSecond = Long.MIN_VALUE;
+    private Mood lastTimerStyleMood;
+    private int lastTimerStyleMinutes = -1;
+    private boolean lastTimerStyleRunning;
+    private boolean lastTimerStyleComplete;
 
     private ScrollView scroll;
     private LinearLayout page;
@@ -410,11 +414,13 @@ public final class MainActivity extends Activity {
         boolean playing = audio.isPlaying();
         String label = playing ? "■  라디오 멈추기" : "▶  라디오 재생";
         if (!label.contentEquals(playbackButton.getText())) playbackButton.setText(label);
-        playbackButton.setContentDescription(playing ? mood.label + " 라디오 멈추기" : mood.label + " 라디오 재생하기");
-        playbackButton.setSelected(playing);
+        String description = playing ? mood.label + " 라디오 멈추기" : mood.label + " 라디오 재생하기";
+        if (!description.equals(playbackButton.getContentDescription())) playbackButton.setContentDescription(description);
+        if (playbackButton.isSelected() != playing) playbackButton.setSelected(playing);
         String status = playing ? "●  ON AIR · 지금, 작은 리듬이 흐릅니다" : "READY · 재생 버튼을 눌러주세요";
         if (!status.contentEquals(playbackStatus.getText())) playbackStatus.setText(status);
-        playbackStatus.setTextColor(playing ? mood.accentColor : MUTED);
+        int statusColor = playing ? mood.accentColor : MUTED;
+        if (playbackStatus.getCurrentTextColor() != statusColor) playbackStatus.setTextColor(statusColor);
         radioDial.setPlaying(playing);
     }
 
@@ -462,23 +468,32 @@ public final class MainActivity extends Activity {
         }
         boolean running = timer.isRunning();
         boolean complete = timer.isComplete();
-        boolean started = timer.getRemainingMillis() < timer.getMinutes() * 60_000L;
+        int minutes = timer.getMinutes();
+        boolean started = timer.getRemainingMillis() < minutes * 60_000L;
         String action = running ? "일시정지" : complete ? "다시 시작" : started ? "이어하기" : "시작";
         if (!action.contentEquals(timerActionButton.getText())) timerActionButton.setText(action);
-        timerActionButton.setContentDescription("타이머 " + action);
-        timerActionButton.setSelected(running);
+        String description = "타이머 " + action;
+        if (!description.equals(timerActionButton.getContentDescription())) timerActionButton.setContentDescription(description);
+        if (timerActionButton.isSelected() != running) timerActionButton.setSelected(running);
         String status = complete ? "작은 쉼표가 끝났어요" : running ? "잠깐, 나만의 시간을 보내요" : started ? "잠시 멈췄어요" : "준비되면 시작해요";
         if (!status.contentEquals(timerStatus.getText())) timerStatus.setText(status);
+        if (lastTimerStyleMood == mood && lastTimerStyleMinutes == minutes
+                && lastTimerStyleRunning == running && lastTimerStyleComplete == complete) return;
         int[] values = {3, 5, 10};
         for (int i = 0; i < presetButtons.length; i++) {
             Button button = presetButtons[i];
-            boolean selected = timer.getMinutes() == values[i];
-            button.setSelected(selected);
+            boolean selected = minutes == values[i];
+            if (button.isSelected() != selected) button.setSelected(selected);
             button.setTextColor(selected ? DARK_TEXT : CREAM);
             button.setBackground(shape(selected ? mood.accentColor : withAlpha(CREAM, 12), dp(12),
                     selected ? 0 : 1, Color.rgb(66, 84, 70)));
-            button.setContentDescription(values[i] + "분 타이머" + (selected ? ", 선택됨" : ", 설정하기"));
+            String presetDescription = values[i] + "분 타이머" + (selected ? ", 선택됨" : ", 설정하기");
+            if (!presetDescription.equals(button.getContentDescription())) button.setContentDescription(presetDescription);
         }
+        lastTimerStyleMood = mood;
+        lastTimerStyleMinutes = minutes;
+        lastTimerStyleRunning = running;
+        lastTimerStyleComplete = complete;
     }
 
     private void renderNote() {
