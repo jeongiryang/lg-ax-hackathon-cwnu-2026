@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="770" viewBox="0 0 1200 770" role="img" aria-labelledby="title desc">
+<title id="title">Kitchen Mood Radio 웹앱 구조</title><desc id="desc">브라우저 화면이 무드 데이터, 합성 사운드, 단일 타이머, 설정 저장을 연결한다.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#648071"/></marker><style>text{font-family:Arial,'Malgun Gothic',sans-serif;fill:#243c30}.title{font-size:29px;font-weight:700}.sub{font-size:13px;fill:#6b7c70}.label{font-size:18px;font-weight:700}.file{font-size:12px;fill:#5e7367}.note{font-size:13px;fill:#557060}.line{fill:none;stroke:#648071;stroke-width:2.3;marker-end:url(#arrow)}.box{fill:#fff;stroke:#bdcfc1;stroke-width:1.5;rx:13}.accent{fill:#e9dcc0;stroke:#c7b187;stroke-width:1.5;rx:13}</style></defs>
+<rect width="1200" height="770" rx="24" fill="#f4f6ee"/>
+<text x="56" y="61" class="title">Kitchen Mood Radio</text><text x="56" y="89" class="sub">Browser application architecture · mood / sound / timer / preferences</text>
+<rect x="44" y="118" width="1112" height="610" rx="20" fill="#ebf0e6" stroke="#cedacb" stroke-dasharray="6 5"/><text x="70" y="148" class="sub">브라우저 안에서 동작</text>
+<rect x="80" y="268" width="228" height="137" class="box"/><text x="104" y="309" class="label">사용자 화면</text><text x="104" y="334" class="file">public/index.html</text><text x="104" y="368" class="note">무드 · 재생 · 볼륨 · 타이머</text>
+<rect x="381" y="268" width="225" height="137" class="accent"/><text x="405" y="309" class="label">화면 제어</text><text x="405" y="334" class="file">src/main.js</text><text x="405" y="368" class="note">입력 처리와 화면 갱신</text>
+<path d="M308 336H381" class="line"/>
+<rect x="723" y="180" width="335" height="91" class="box"/><text x="748" y="214" class="label">무드와 문구</text><text x="748" y="240" class="file">src/data/stations.js</text>
+<rect x="723" y="299" width="335" height="91" class="box"/><text x="748" y="333" class="label">합성 사운드</text><text x="748" y="359" class="file">src/audio/engine.js → Web Audio API</text>
+<rect x="723" y="418" width="335" height="91" class="box"/><text x="748" y="452" class="label">단일 타이머</text><text x="748" y="478" class="file">src/timer/countdown.js → 남은 시간</text>
+<path d="M606 302H660V225H723" class="line"/><path d="M606 337H723" class="line"/><path d="M606 374H660V463H723" class="line"/>
+<rect x="381" y="520" width="225" height="97" class="box"/><text x="405" y="555" class="label">설정 읽기 · 저장</text><text x="405" y="583" class="file">src/storage/preferences.js</text>
+<path d="M493 405V520" class="line"/>
+<rect x="723" y="552" width="335" height="66" class="accent"/><text x="748" y="581" class="label">localStorage</text><text x="748" y="601" class="file">마지막으로 선택한 무드</text>
+<path d="M606 568H723" class="line"/>
+<text x="80" y="680" class="note">기분을 선택하면 화면과 소리를 함께 바꾸고, 사용자가 설정한 시간만 따로 센다.</text>
+</svg>

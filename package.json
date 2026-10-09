@@ -1,0 +1,13 @@
+{
+  "name": "kitchen-mood-radio",
+  "version": "0.1.0",
+  "description": "기분에 맞는 소리와 요리 타이머를 제공하는 주방 웹앱",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs"
+  }
+}

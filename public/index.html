@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#15221f">
+  <meta name="description" content="기분에 따라 주방의 색감과 소리를 바꾸는 Kitchen Mood Radio. 오늘의 조리 시간을 나만의 라디오 시간으로.">
+  <title>Kitchen Mood Radio · LG AX × CWNU</title>
+  <link rel="stylesheet" href="assets/main.css">
+  <script type="module" src="app/main.js"></script>
+</head>
+<body data-mood="calm">
+  <div class="page">
+    <header class="topbar">
+      <a class="wordmark" href="#"><span class="brand-symbol" aria-hidden="true">◒</span> KITCHEN <span>MOOD RADIO</span></a>
+      <span class="project-tag">LG AX × CWNU <span class="tag-dot">/</span> THEME B</span>
+    </header>
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span> A LITTLE SOUND FOR YOUR KITCHEN</p>
+          <h1 id="hero-title">오늘 주방은,<br>어떤 <em>기분</em>인가요?</h1>
+          <p class="intro">계란 프라이 한 장에도 분위기는 필요하니까.<br>지금의 기분을 골라, 작은 주방에 라디오를 켜보세요.</p>
+          <div class="mood-label">오늘의 무드 <span>CHOOSE YOUR MOOD</span></div>
+          <div class="mood-options" role="group" aria-label="주방 무드 선택">
+            <button class="mood-button" type="button" data-mood="calm" aria-pressed="true"><span class="mood-icon" aria-hidden="true">☾</span><strong>차분하게</strong><small>느긋한 저녁</small></button>
+            <button class="mood-button" type="button" data-mood="groove" aria-pressed="false"><span class="mood-icon" aria-hidden="true">✦</span><strong>신나게</strong><small>흥이 나는 주방</small></button>
+            <button class="mood-button" type="button" data-mood="focus" aria-pressed="false"><span class="mood-icon" aria-hidden="true">◎</span><strong>집중해서</strong><small>나만의 리듬</small></button>
+          </div>
+        </div>
+        <section class="radio-card" aria-label="무드 라디오 플레이어">
+          <div class="radio-heading"><span class="smallcaps">NOW IN YOUR KITCHEN</span><span id="mood-tag" class="radio-pill">SLOW EVENING</span></div>
+          <div class="record-stage" aria-hidden="true"><div class="record"><div class="record-label"><span id="mood-art">☾</span><span>KITCHEN<br>MOOD CLUB</span></div></div><div class="tonearm"></div><div class="record-shadow"></div></div>
+          <div class="track"><div><span class="smallcaps">TODAY'S STATION</span><h2 id="session-title">느긋한 저녁의 주방</h2><p id="session-note">따뜻한 합성 음색과 여유로운 호흡.</p></div><span class="frequency">87.3<br><small>MOOD FM</small></span></div>
+          <div class="play-row"><button id="sound-toggle" class="primary-button" type="button" aria-pressed="false">라디오 켜기</button><span id="sound-state" class="sound-state">잠시 조용한 상태</span><div class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i></div></div>
+          <label class="volume-control" for="volume"><span>볼륨</span><input id="volume" type="range" min="0" max="100" value="20"><span id="volume-value">20%</span></label>
+          <p class="sound-hint">소리는 재생 버튼을 누르면 시작됩니다.</p>
+        </section>
+      </section>
+      <section class="session-grid" aria-label="오늘의 주방 시간">
+        <section class="timer-card" aria-labelledby="timer-title">
+          <div class="card-header"><span class="eyebrow">A SMALL PAUSE</span><span class="card-number">01</span></div>
+          <h2 id="timer-title">요리할 동안, 잠깐.</h2><p>기다리는 시간도 나의 시간이 되도록.</p>
+          <div id="timer-display" class="timer-display" aria-label="남은 시간">03:00</div>
+          <div id="timer-presets" class="timer-presets" role="group" aria-label="타이머 시간 선택"><button type="button" data-minutes="3" aria-pressed="true">3분</button><button type="button" data-minutes="5" aria-pressed="false">5분</button><button type="button" data-minutes="10" aria-pressed="false">10분</button><label for="timer-minutes">직접 <input id="timer-minutes" type="number" min="1" max="60" value="3" inputmode="numeric"> 분</label></div>
+          <div class="timer-actions"><button id="timer-start" class="dark-button" type="button">타이머 시작</button><button id="timer-reset" class="text-button" type="button">초기화 ↺</button></div>
+          <p id="timer-status" class="timer-status" role="status">준비되면 시작해 주세요.</p>
+        </section>
+        <section class="scene-card" aria-labelledby="scene-title">
+          <div class="card-header"><span class="eyebrow">A NOTE FROM YOUR KITCHEN</span><span class="card-number">02</span></div>
+          <div class="scene-heading"><h2 id="scene-title">오늘의 한 숟갈</h2><span id="mood-label" class="scene-mood">차분하게</span></div>
+          <p id="mood-copy" class="scene-description">서두르지 않아도 괜찮은 저녁.</p>
+          <blockquote id="scene-line">오늘은 물 끓는 소리만큼만 천천히 가요.</blockquote>
+          <div class="scene-footer"><button id="scene-shuffle" type="button" class="outline-button">다른 한마디 ↗</button><span><span id="scene-count">1</span> / TODAY'S LITTLE NOTE</span></div>
+          <div class="scene-decoration" aria-hidden="true">✳</div>
+        </section>
+      </section>
+      <section class="how-it-works" aria-label="사용 순서"><div><span>01</span><p>오늘 기분을 고르고</p></div><div><span>02</span><p>주방에 소리를 채우고</p></div><div><span>03</span><p>나만의 요리 시간을 보내요</p></div></section>
+    </main>
+    <footer><span>Kitchen Mood Radio <span class="footer-dot">·</span> 국립창원대학교</span><span>새로운 키친 경험을 위한 웹 프로토타입</span></footer>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
