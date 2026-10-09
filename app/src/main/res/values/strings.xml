@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kitchen Mood Radio</string>
+    <string name="volume_percent">%1$d%%</string>
+    <string name="quoted_note">“%1$s”</string>
+</resources>

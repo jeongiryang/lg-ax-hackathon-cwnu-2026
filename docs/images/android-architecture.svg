@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="830" viewBox="0 0 1200 830" role="img" aria-labelledby="title desc">
+<title id="title">Kitchen Mood Radio Android 구조</title><desc id="desc">MainActivity가 무드, 레코드 화면, AudioTrack 음 생성, 수동 타이머, SharedPreferences 설정을 연결한다.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#668171"/></marker><style>text{font-family:Arial,'Malgun Gothic',sans-serif;fill:#253b2f}.title{font-size:28px;font-weight:700}.sub{font-size:13px;fill:#6b7c70}.label{font-size:18px;font-weight:700}.file{font-size:12px;fill:#5e7467}.note{font-size:13px;fill:#57715f}.line{fill:none;stroke:#668171;stroke-width:2.2;marker-end:url(#arrow)}.box{fill:#fff;stroke:#bdcfc1;stroke-width:1.5;rx:13}.accent{fill:#e8dcc0;stroke:#c8b28a;stroke-width:1.5;rx:13}</style></defs>
+<rect width="1200" height="830" rx="24" fill="#f5f6ee"/><text x="56" y="61" class="title">Kitchen Mood Radio · Android</text><text x="56" y="89" class="sub">com.cwnu.kitchenmood · Java / Native Views / AudioTrack</text>
+<rect x="44" y="119" width="1112" height="666" rx="20" fill="#eaf0e5" stroke="#cedacb" stroke-dasharray="6 5"/><text x="70" y="149" class="sub">기기 안에서 동작</text>
+<rect x="80" y="276" width="230" height="117" class="box"/><text x="104" y="311" class="label">사용자 화면</text><text x="104" y="338" class="file">무드 / 소리 / 타이머 / 한마디</text><text x="104" y="367" class="note">Android 휴대폰 · 태블릿</text>
+<rect x="378" y="276" width="230" height="117" class="accent"/><text x="402" y="311" class="label">MainActivity</text><text x="402" y="339" class="file">입력 · 상태 표시 · 화면 복원</text><text x="402" y="366" class="note">앱 생명주기 처리</text><path d="M310 335H378" class="line"/>
+<rect x="725" y="171" width="336" height="91" class="box"/><text x="750" y="205" class="label">Mood · RadioDialView</text><text x="750" y="232" class="file">색상 · 문구 · 레코드 그리기</text>
+<rect x="725" y="290" width="336" height="110" class="box"/><text x="750" y="323" class="label">MoodAudioEngine</text><text x="750" y="349" class="file">PCM 합성 → AudioTrack</text><text x="750" y="378" class="note">AudioManager · 오디오 포커스</text>
+<rect x="725" y="429" width="336" height="91" class="box"/><text x="750" y="463" class="label">KitchenTimer</text><text x="750" y="490" class="file">SystemClock.elapsedRealtime</text>
+<path d="M608 305H662V217H725" class="line"/><path d="M608 335H725" class="line"/><path d="M608 373H662V475H725" class="line"/>
+<rect x="378" y="540" width="230" height="91" class="box"/><text x="402" y="574" class="label">MoodPreferences</text><text x="402" y="601" class="file">무드 읽기 · 저장</text><path d="M493 393V540" class="line"/>
+<rect x="725" y="570" width="336" height="74" class="accent"/><text x="750" y="602" class="label">SharedPreferences</text><text x="750" y="628" class="file">마지막으로 선택한 무드</text><path d="M608 586H725" class="line"/>
+<text x="80" y="713" class="note">화면을 벗어나면 소리를 멈추고, 돌아오면 남은 조리 시간을 다시 표시한다.</text><text x="80" y="747" class="file">Gradle → app-debug.apk → Android 기기</text>
+</svg>

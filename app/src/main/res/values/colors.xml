@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="kitchen_background">#142923</color>
+    <color name="kitchen_cream">#F7F2E4</color>
+    <color name="kitchen_muted">#B5C6BA</color>
+    <color name="kitchen_accent">#DFD189</color>
+</resources>

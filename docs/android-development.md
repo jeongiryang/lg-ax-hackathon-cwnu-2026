@@ -1,0 +1,75 @@
+# Android 개발과 실행
+
+## 프로젝트
+
+| 항목 | 값 |
+| --- | --- |
+| 프로젝트 이름 | KitchenMoodRadio |
+| 앱 이름 | Kitchen Mood Radio |
+| 패키지 | `com.cwnu.kitchenmood` |
+| 언어 | Java 17 |
+| 최소 Android 버전 | Android 8.0 · API 26 |
+| compileSdk / targetSdk | 36 / 36 |
+| Android Gradle Plugin | 8.13.2 |
+| Gradle | 8.13 |
+| Build Tools | 35.0.0 |
+| 앱 버전 | 0.2.0 |
+
+## Android Studio
+
+1. 저장소 루트 폴더를 Android Studio에서 연다.
+2. Gradle JDK를 17로 설정한다.
+3. SDK Manager에서 Android SDK Platform 36과 Build Tools 35.0.0을 준비한다.
+4. Gradle 동기화가 완료되면 `app` 실행 구성을 고른다.
+5. Android 8.0 이상의 기기 또는 에뮬레이터에서 Run을 누른다.
+
+## 명령줄 빌드
+
+Windows:
+
+```powershell
+.\gradlew.bat assembleDebug testDebugUnitTest lintDebug
+```
+
+macOS / Linux:
+
+```bash
+./gradlew assembleDebug testDebugUnitTest lintDebug
+```
+
+SDK 경로는 개발 환경의 `local.properties` 또는 `ANDROID_HOME`으로 설정한다. `local.properties`는 저장소에 포함하지 않는다.
+
+생성되는 APK:
+
+```text
+app/build/outputs/apk/debug/app-debug.apk
+```
+
+기기에 설치하려면:
+
+```bash
+adb install -r app/build/outputs/apk/debug/app-debug.apk
+adb shell am start -n com.cwnu.kitchenmood/.MainActivity
+```
+
+## 현재 동작 범위
+
+무드 선택, 합성 배경음, 볼륨, 수동 타이머, 한마디 전환을 앱 화면에서 사용한다. 마지막 무드는 앱 설정에 저장한다. 화면을 벗어나면 소리는 멈춘다. 타이머는 종료 시각을 유지하고 앱으로 돌아왔을 때 남은 시간을 다시 계산한다.
+
+앱 프로세스가 종료된 뒤의 알림이나 백그라운드 음악 서비스는 현재 구현 범위에 포함하지 않는다.
+
+## 자동 빌드
+
+GitHub의 Android prototype 워크플로가 디버그 APK, 단위 검사, Android Lint를 실행한다. 성공한 실행의 `kitchen-mood-radio-debug` 아티팩트에서 APK를 받을 수 있다.
+
+## 웹 미리보기
+
+화면 콘셉트를 확인하는 웹 버전은 `web` 폴더에 있다.
+
+```bash
+cd web
+npm run build
+python -m http.server 8769 --directory dist
+```
+
+Android 앱은 브라우저 화면을 감싸지 않고 플랫폼 View와 AudioTrack으로 구현한다.
