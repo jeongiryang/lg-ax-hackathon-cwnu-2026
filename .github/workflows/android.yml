@@ -19,7 +19,9 @@ jobs:
           distribution: temurin
           java-version: '17'
       - name: Install Android build packages
-        run: sdkmanager 'platforms;android-36' 'build-tools;35.0.0'
+        uses: android-actions/setup-android@v4
+        with:
+          packages: 'platform-tools platforms;android-36 build-tools;35.0.0'
       - name: Build and check
         run: ./gradlew --no-daemon assembleDebug testDebugUnitTest lintDebug
       - name: Save debug APK
