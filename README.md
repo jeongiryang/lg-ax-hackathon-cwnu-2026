@@ -19,6 +19,12 @@
 | 최소 버전 | Android 8.0 · API 26 |
 | 앱 버전 | 0.2.0 |
 
+## Android 실행 화면
+
+<img src="docs/images/android-preview.png" alt="Android API 35에서 실행한 Kitchen Mood Radio 첫 화면" width="320">
+
+*앱을 설치해 캡처한 실제 첫 화면. 타이머와 문장 카드는 아래로 스크롤해 사용합니다.*
+
 ## 사용 흐름
 
 1. 오늘의 기분을 차분하게, 신나게, 집중해서 중에서 고릅니다.

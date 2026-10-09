@@ -39,6 +39,8 @@ macOS / Linux:
 
 SDK 경로는 개발 환경의 `local.properties` 또는 `ANDROID_HOME`으로 설정한다. `local.properties`는 저장소에 포함하지 않는다.
 
+Windows에서 단위 테스트 실행 시 한글 경로 때문에 테스트 클래스를 찾지 못하면 프로젝트를 영문 경로에서 빌드한다. `local.properties`에는 SDK 경로의 드라이브 콜론을 이스케이프하고 슬래시를 사용한다. 예: `sdk.dir=C\:/Android/Sdk`.
+
 생성되는 APK:
 
 ```text
@@ -73,3 +75,12 @@ python -m http.server 8769 --directory dist
 ```
 
 Android 앱은 브라우저 화면을 감싸지 않고 플랫폼 View와 AudioTrack으로 구현한다.
+
+## 확인한 범위
+
+- 디버그 APK 빌드 완료
+- 단위 테스트 7개 통과: 타이머 5개, 무드 데이터 2개
+- Android Lint 오류 0개, Gradle 새 버전 안내 경고 1개
+- Android API 35 가상 기기에 APK 설치 및 앱 실행 확인
+
+실기기의 소리 품질과 다른 앱의 오디오 포커스 전환은 후속 확인 항목이다.
