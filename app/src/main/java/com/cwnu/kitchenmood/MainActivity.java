@@ -284,7 +284,7 @@ public final class MainActivity extends Activity {
         addSpace(timerCard, 8);
         LinearLayout customRow = row();
         customMinutes = new EditText(this);
-        customMinutes.setId(View.generateViewId());
+        customMinutes.setId(R.id.custom_minutes);
         inputLabel.setLabelFor(customMinutes.getId());
         customMinutes.setInputType(InputType.TYPE_CLASS_NUMBER);
         customMinutes.setSingleLine(true);
