@@ -77,4 +77,39 @@ public class KitchenTimerTest {
         assertEquals(60_000L, timer.getRemainingMillis());
         assertFalse(timer.isComplete());
     }
+
+    @Test public void restoringExpiredRunningSnapshotReportsCompletionOnce() {
+        AtomicLong clock = new AtomicLong(1_000L);
+        KitchenTimer original = new KitchenTimer(clock::get);
+        original.setMinutes(1);
+        original.start();
+        clock.addAndGet(60_000L);
+        assertEquals(0L, original.getRemainingMillis());
+        assertTrue(original.isRunning());
+
+        KitchenTimer restored = new KitchenTimer(clock::get);
+        restored.restore(original.getMinutes(), original.getRemainingMillis(),
+                original.isRunning(), original.getDeadline());
+        assertTrue(restored.isComplete());
+        assertFalse(restored.isRunning());
+        assertTrue(restored.tick());
+        assertFalse(restored.tick());
+    }
+
+    @Test public void restoringReportedCompletionDoesNotReportAgain() {
+        AtomicLong clock = new AtomicLong(1_000L);
+        KitchenTimer original = new KitchenTimer(clock::get);
+        original.setMinutes(1);
+        original.start();
+        clock.addAndGet(60_000L);
+        assertTrue(original.tick());
+
+        KitchenTimer restored = new KitchenTimer(clock::get);
+        restored.restore(original.getMinutes(), original.getRemainingMillis(),
+                original.isRunning(), original.getDeadline());
+        assertEquals(0L, restored.getRemainingMillis());
+        assertTrue(restored.isComplete());
+        assertFalse(restored.isRunning());
+        assertFalse(restored.tick());
+    }
 }

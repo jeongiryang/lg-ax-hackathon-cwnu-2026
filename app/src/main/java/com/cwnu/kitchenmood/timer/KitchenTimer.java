@@ -89,7 +89,7 @@ public final class KitchenTimer {
         this.running = running && remainingMillis > 0L && deadline > 0L;
         this.deadline = this.running ? Math.min(deadline, clock.getAsLong() + remainingMillis) : 0L;
         complete = remainingMillis == 0L;
-        completionPending = false;
+        completionPending = running && complete && deadline > 0L;
     }
 
     private long durationMillis() {
