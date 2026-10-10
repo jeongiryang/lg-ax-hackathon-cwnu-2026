@@ -1,5 +1,6 @@
 package com.cwnu.kitchenmood.ui;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -17,11 +18,12 @@ public final class RadioDialView extends View {
     private int accentColor = Color.rgb(223, 209, 137);
     private boolean playing;
     private boolean attached;
+    private boolean animating;
     private float rotation;
     private long lastFrame;
     private final Runnable animation = new Runnable() {
         @Override public void run() {
-            if (!playing || !attached) return;
+            if (!animating) return;
             long now = SystemClock.uptimeMillis();
             if (lastFrame != 0L) rotation = (rotation + Math.min(100L, now - lastFrame) * 0.014f) % 360f;
             lastFrame = now;
@@ -38,24 +40,29 @@ public final class RadioDialView extends View {
     }
 
     public void setPlaying(boolean value) {
-        if (playing == value) return;
         playing = value;
+        syncAnimation();
+    }
+
+    private void syncAnimation() {
+        boolean enabled = playing && attached && ValueAnimator.areAnimatorsEnabled();
+        if (animating == enabled) return;
+        animating = enabled;
         removeCallbacks(animation);
         lastFrame = 0L;
-        if (playing && attached) postOnAnimation(animation);
+        if (animating) postOnAnimation(animation);
         invalidate();
     }
 
     @Override protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         attached = true;
-        if (playing) { lastFrame = 0L; postOnAnimation(animation); }
+        syncAnimation();
     }
 
     @Override protected void onDetachedFromWindow() {
         attached = false;
-        removeCallbacks(animation);
-        lastFrame = 0L;
+        syncAnimation();
         super.onDetachedFromWindow();
     }
 
