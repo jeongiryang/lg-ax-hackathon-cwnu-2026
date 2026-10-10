@@ -137,6 +137,7 @@ public final class MainActivity extends Activity {
     private void buildContent() {
         FrameLayout root = new FrameLayout(this);
         scroll = new ScrollView(this);
+        scroll.setId(R.id.main_scroll);
         scroll.setFillViewport(true);
         scroll.setClipToPadding(false);
         scroll.setVerticalScrollBarEnabled(false);
